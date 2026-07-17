@@ -1,0 +1,34 @@
+{
+  "Priya Raman": {
+    "phone": "98400 12345",
+    "email": "priya.raman@ey.com"
+  },
+  "Arun Kumar": {
+    "phone": "90030 67890",
+    "email": "arun.kumar@tellestia.com"
+  },
+  "Sofia Almeida": {
+    "phone": "99620 44821",
+    "email": "sofia.almeida@ey.com"
+  },
+  "David Chen": {
+    "phone": "97910 33456",
+    "email": "david.chen@meridianbank.com"
+  },
+  "Lakshmi Narayanan": {
+    "phone": "94440 78123",
+    "email": "lakshmi.n@ey.com"
+  },
+  "James Okafor": {
+    "phone": "96770 21908",
+    "email": "james.okafor@tellestia.com"
+  },
+  "Ruthran": {
+    "phone": "9876543210",
+    "email": "ruthran@email.com"
+  },
+  "Deepti": {
+    "phone": "9876543210",
+    "email": "deepti@hereandnowai.com"
+  }
+}
