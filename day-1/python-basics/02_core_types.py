@@ -1,3 +1,10 @@
+# ==========================================================================
+# DAY 1 · Python Basics · 02 — Core types, numbers & booleans
+# --------------------------------------------------------------------------
+# Learn: int / float / str / bool / None, converting between types (int(),
+# float(), str()), arithmetic and comparison operators, logical and/or/not,
+# and "truthiness". Run:  python 02_core_types.py
+# ==========================================================================
 
 count = 42              # integer
 temperature = 0.7       # float
@@ -63,5 +70,22 @@ print(" eligible for a loan? ->", eligible)
 print("\nTruthiness of values:")
 print("\nbool('') ->", bool('')) # empty string is False
 print("bool('Hello') ->", bool("Hello")) # non-empty string is True
-print("bool(0) ->", bool(-1)) # 0 is False
+print("bool(0) ->", bool(0)) # 0 is False
 print("bool(None) ->", bool(None)) # None is False
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  core types, numbers & booleans
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 02_core_types.py
+#
+# 1. Make an int and a float, add them together, and print the result AND
+#    its type().  Which type "wins" when you mix them?
+# 2. Is 2026 an even number? Print the result of  2026 % 2 == 0.
+# 3. Convert the string "150" to an int and add 25 to it.
+# 4. Predict the answer BEFORE running, then check each one:
+#       bool("0")    bool(0)    bool(" ")    bool([])
+#    (Surprise: the *string* "0" is True, but the *number* 0 is False!)
+# 5. Two flags: has_ticket = True, is_member = False.  Print the result of
+#    (has_ticket and is_member), (has_ticket or is_member), (not is_member).
+# ==========================================================================

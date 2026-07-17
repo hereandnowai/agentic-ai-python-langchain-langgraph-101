@@ -1,3 +1,11 @@
+# ==========================================================================
+# DAY 2 · Python Basics · 02 — Dictionaries (key → value data)
+# --------------------------------------------------------------------------
+# Learn: create/read/update/delete keys, safe lookup with .get(), looping
+# with .items(), and nesting (lists of dicts) — the exact shape that LLM
+# chat "messages" use. Run:  python 02_dicts.py
+# ==========================================================================
+
 # part 1 - creating a dictionary and accessing its values
 customer = {
     "name": "Muthu Kumar",
@@ -69,3 +77,19 @@ counts = {}
 for word in sentence.split():
     counts[word] = counts.get(word, 0) + 1 # using get method to handle missing keys
 print("\nword counts : ", counts)
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  dictionaries
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 02_dicts.py
+#
+# 1. Build a dict for a book: title, author, year, in_stock (bool). Print
+#    the title and the author.
+# 2. Use .get() to safely read a "publisher" key that does NOT exist, with
+#    a default value of "unknown".
+# 3. Add a "price" key, update the "year", then delete the "in_stock" key.
+# 4. Loop over the dict with .items() and print each pair as  key = value.
+# 5. Count the words in  "red blue red green blue red"  into a dict using
+#    the  counts.get(word, 0) + 1  trick shown above.
+# ==========================================================================

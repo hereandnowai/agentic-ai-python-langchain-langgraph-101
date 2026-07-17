@@ -54,3 +54,20 @@ skills_have = {"python", "excel", "apis"}
 print("\nin BOTH (intersection):", skills_needed & skills_have)
 print("in EITHER (union):", skills_needed | skills_have)
 print("needed but MISSING: ", skills_needed - skills_have)
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  tuples & sets
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 04_tuples_and_sets.py
+#
+# 1. Make a tuple  person = ("Asha", 27, "current")  and unpack it into
+#    three variables in ONE line, then print them.
+# 2. Try to change  person[0] = "Ravi".  Read the error message — why does
+#    a tuple not allow this? (Write your answer as a comment.)
+# 3. Given  nums = [3, 3, 1, 2, 2, 3], use a set to find the UNIQUE values.
+# 4. Two sets: a = {"python", "sql"}, b = {"sql", "excel"}.  Print the values
+#    in BOTH (&), in EITHER (|), and only in 'a' (-).
+# 5. Write a function  first_and_last(items)  that returns the first and last
+#    element of a list as a tuple.
+# ==========================================================================

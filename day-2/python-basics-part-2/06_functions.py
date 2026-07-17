@@ -45,7 +45,7 @@ def classify(balance):
         return "empty"
     return "positive"
 print("classify(-5):", classify(-5))
-print("classify100):", classify(100))
+print("classify(100):", classify(100))
 
 # function can return several values as a tuple
 def stats(numbers):
@@ -80,3 +80,20 @@ def log_all(*args, **kwargs):
     print("Keyword arguments:", kwargs) # dictionary of keyword arguments
 print()
 log_all("a", "b", level="info", retries=3)
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  functions
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 06_functions.py
+#
+# 1. Write  area_of_rectangle(width, height)  that RETURNS width * height
+#    (return it, don't just print it).
+# 2. Write  greet(name, greeting="Hello")  with a default argument. Call it
+#    once WITHOUT the greeting and once WITH  greeting="Hi".
+# 3. Write  is_even(n)  that returns True or False.
+# 4. Write  summary(numbers)  that returns (min, max, average) as a tuple,
+#    then unpack the three values where you call it.
+# 5. In a comment, explain WHY  add_items(item, basket=None)  uses None and
+#    then creates the list inside, instead of  basket=[]  as the default.
+# ==========================================================================

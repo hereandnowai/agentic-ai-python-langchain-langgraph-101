@@ -1,3 +1,11 @@
+# ==========================================================================
+# DAY 2 · Python Basics · 05 — Nested loops & sorting with a key
+# --------------------------------------------------------------------------
+# Learn: loops inside loops (tables & grids) and sorting lists of dicts with
+# sorted(data, key=lambda item: item["field"]).
+# Run:  python 05_nested_loops_and_sorting.py
+# ==========================================================================
+
 # part 1 - nested loops
 print("Times table: (2 and 3)")
 for a in [2, 3]:
@@ -36,4 +44,20 @@ sorted_customers = sorted(customers, key=lambda c: c["score"], reverse=True)
 print("\nCustomers sorted by score:")
 for c in sorted_customers:
     print(f"  {c['name']} has a {c['product']} with score {c['score']}")
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  nested loops & sorting
+# --------------------------------------------------------------------------
+# Write your code below each task, then run: python 05_nested_loops_and_sorting.py
+#
+# 1. Print the full 1..5 times table for the numbers 2, 3, and 4 using
+#    nested loops (a loop inside a loop).
+# 2. Given a grid (list of [name, product] rows), print "<name> -> <product>"
+#    for every row.
+# 3. Sort the 'customers' list by NAME (A -> Z) instead of by score.
+# 4. Sort the 'customers' by score ASCENDING (lowest first).
+# 5. BONUS: find the single customer with the HIGHEST score using
+#    max(customers, key=lambda c: c["score"]).
+# ==========================================================================
 

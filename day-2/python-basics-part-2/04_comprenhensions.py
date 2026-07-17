@@ -1,3 +1,11 @@
+# ==========================================================================
+# DAY 2 · Python Basics · 04 — List / dict / set comprehensions
+# --------------------------------------------------------------------------
+# Learn: the short one-line way to build a new list, dict or set from an
+# existing one — with an optional filter (if). Every example is shown as a
+# normal loop first, then as a comprehension. Run: python 04_comprenhensions.py
+# ==========================================================================
+
 numbers = [1, 2, 3, 4, 5, 6]
 
 # part 1 - the same transform, two ways
@@ -56,3 +64,20 @@ print("rate of car: ", rate_of["car"])
 # part 6 - set comprehensions
 first_letters = {word[0] for word in ["hello", "world", "python", "is", "awesome"]}
 print(f"first letters: {first_letters}")
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  comprehensions
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 04_comprenhensions.py
+# Tip: write it first as a normal for-loop, THEN shrink it to a comprehension.
+#
+# 1. From  nums = list(range(1, 11)), build a list of only the ODD numbers.
+# 2. Build a list of the squares of 1..8  (i.e. [1, 4, 9, ...]).
+# 3. From  ["hi", "hello", "hey", "howdy"], keep only words longer than 3
+#    letters.
+# 4. Build a dict  {word: length_of_word}  for a list of words using a dict
+#    comprehension.
+# 5. From the 'chunks' list above, keep the text of chunks with score < 0.8
+#    (the LOW-relevance ones) — the opposite of the worked example.
+# ==========================================================================

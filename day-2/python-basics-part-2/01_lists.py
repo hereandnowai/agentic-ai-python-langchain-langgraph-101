@@ -72,3 +72,19 @@ c = a.copy() # c is a copy of the list a
 c.append(5)
 print(f"a: {a}, c: {c}") # a will not show the new item added to c
 
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  lists
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 01_lists.py
+#
+# 1. Make  fruits = ["apple", "banana", "cherry"].  Append "mango" to the
+#    end, insert "kiwi" at the front (index 0), then print the list.
+# 2. Print just the first TWO fruits using slicing.
+# 3. Sort  [5, 2, 9, 1, 7]  ascending, then sort it again descending.
+# 4. From  scores = [10, 20, 30, 40], print the sum, the max, and the
+#    average (sum divided by len).
+# 5. Explain in a comment the difference between  b = a  and  c = a.copy().
+#    Prove it: append to one and print both a and b, then a and c.
+# ==========================================================================
+

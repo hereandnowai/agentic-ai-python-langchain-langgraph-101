@@ -1,3 +1,11 @@
+# ==========================================================================
+# DAY 1 · Python Basics · 03 — Working with strings (text)
+# --------------------------------------------------------------------------
+# Learn: indexing & slicing text[start:end], common string methods
+# (.strip / .upper / .lower / .title / .replace / .split / .join / .find),
+# chaining methods, and multi-line f-strings. Run:  python 03_strings.py
+# ==========================================================================
+
 text = "Meridian Retail Bank"
 
 print("text:", text)
@@ -62,3 +70,21 @@ print(system_prompt)
 print('She said, "Hello!"')
 print("It's a beautiful day!")
 print('It\'s a beautiful day!') # escaping single quote with backslash
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  working with strings
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 03_strings.py
+#
+# 1. Store your full name in a variable. Print its length, its first
+#    character, and its last character.
+# 2. From "Meridian Retail Bank", use slicing to print JUST the word
+#    "Retail".
+# 3. Take "  Mix of UPPER and lower  " and print it stripped AND lowercased
+#    (chain the two methods together).
+# 4. Use .split() to break "one,two,three" into a list, then .join() it back
+#    together with " - " between each word.
+# 5. Build an f-string prompt: "Reply to <name> about <product> politely."
+#    using your own name and product variables.
+# ==========================================================================

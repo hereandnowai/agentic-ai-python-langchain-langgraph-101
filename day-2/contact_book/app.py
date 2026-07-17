@@ -695,3 +695,22 @@ with gr.Blocks(title="Contact Book — mini CRM") as demo:
 
 if __name__ == "__main__":
     demo.launch(theme=Soft(), css=CSS, head=HEAD, js=FORCE_LIGHT_JS)
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  small, SAFE tweaks to the frontend
+# --------------------------------------------------------------------------
+# You do NOT need to understand all the CSS to do these. Change the code,
+# then re-run:  python app.py   and refresh the browser.
+#
+# 1. In render_topbar(), change the wordmark text "Contact Book" to your own
+#    app name, then reload the page.
+# 2. In the CSS, find  --crm-accent: #FFE600;  and change it to another
+#    colour (e.g. #00B4D8). Notice every highlight updates at once.
+# 3. Change the three placeholders in the "New contact" form (name / phone /
+#    email) to your own example values.
+# 4. In render_stats(), add a FOURTH stat tile that shows how many contacts
+#    have an email address (hint: count contacts where c.get("email")).
+# 5. THINK: to add an "Edit contact" button, which backend function would
+#    you need in contacts.py?  (Hint: that's activity 1 in contacts.py.)
+# ==========================================================================

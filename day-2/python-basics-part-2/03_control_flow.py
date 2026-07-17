@@ -1,3 +1,11 @@
+# ==========================================================================
+# DAY 2 · Python Basics · 03 — Control flow (decisions & loops)
+# --------------------------------------------------------------------------
+# Learn: if / elif / else, for loops with range(), looping over data with
+# enumerate(), continue & break, and while loops.
+# Run:  python 03_control_flow.py
+# ==========================================================================
+
 # part 1 if / elif / else (make a decision)
 balance = 150000.0
 
@@ -90,3 +98,19 @@ for amount in transactions:
         kind = "debit"
     size = "large" if abs(amount) >= 1000 else "small"
     print(f"transaction: {amount}, kind: {kind}, size: {size}")
+
+
+# ==========================================================================
+# 🏋️  PRACTICE ACTIVITIES  —  control flow (decisions & loops)
+# --------------------------------------------------------------------------
+# Write your code below each task, then run:  python 03_control_flow.py
+#
+# 1. Write an if/elif/else that prints a grade for a score:
+#       >= 90 -> "A",  >= 75 -> "B",  >= 50 -> "C",  else -> "Fail".
+# 2. Use a for loop with range() to print the 5-times table (5, 10, ... 50).
+# 3. Add up ONLY the even numbers from 1 to 20 using a loop and the % operator.
+# 4. Loop over the 'messages' list and print ONLY the assistant turns
+#    (use 'continue' to skip the others).
+# 5. Use a while loop to keep halving a number (start at 100), printing each
+#    step, until it drops below 1.
+# ==========================================================================
