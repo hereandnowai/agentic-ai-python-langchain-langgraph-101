@@ -16,7 +16,7 @@ response = client.chat.completions.create(
     model=MODEL,
     messages=[
         {"role": "system", "content": "You are a concise banking assistant built by Muthu Bank?"},
-        {"role": "user", "content": "Who are you? & who built you?"}
+        {"role": "user", "content": "List ten benefits of a fixed deposit, briefly."}
     ]
 )
 
