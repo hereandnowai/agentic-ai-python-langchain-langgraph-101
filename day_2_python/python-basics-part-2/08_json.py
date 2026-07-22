@@ -6,10 +6,10 @@
 # Run:  python 08_json.py
 # ==========================================================================
 
-import json
+import json  # brings in Python's built-in toolkit for working with JSON
 
 # part 1 - python dict --> json text
-customer = {
+customer = {  # makes a dictionary describing one customer
     "name": "Alice",
     "account_type": "savings",
     "balance": 1000.50,
@@ -18,20 +18,20 @@ customer = {
     "phone": None
 }
 
-json_text = json.dumps(customer)
-print("compact JSON:")
-print(json_text)
+json_text = json.dumps(customer)  # turns the dictionary into one line of JSON text
+print("compact JSON:")  # prints a heading
+print(json_text)  # shows the JSON text
 
-pretty = json.dumps(customer, indent=2)
-print("pretty JSON:")
-print(pretty)
+pretty = json.dumps(customer, indent=2)  # turns it into JSON text with tidy spacing and line breaks
+print("pretty JSON:")  # prints a heading
+print(pretty)  # shows the nicely spaced JSON
 
 # part 2 - json text --> python object
-incoming = '{"intent": "loan_query", "product": "home_loa", "amount": 250000}'
-parsed = json.loads(incoming)
-print("\nparsed type: ", type(parsed))
-print("intent : ", parsed["intent"])
-print("amount : ", parsed["amount"])
+incoming = '{"intent": "loan_query", "product": "home_loa", "amount": 250000}'  # a piece of JSON text that arrived as a string
+parsed = json.loads(incoming)  # turns that JSON text back into a Python dictionary
+print("\nparsed type: ", type(parsed))  # shows that it is now a dictionary
+print("intent : ", parsed["intent"])  # looks up the value stored under "intent"
+print("amount : ", parsed["amount"])  # looks up the value stored under "amount"
 
 
 # ==========================================================================

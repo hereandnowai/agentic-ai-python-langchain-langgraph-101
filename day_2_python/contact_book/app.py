@@ -11,12 +11,12 @@ contacts.py — this file only *calls* those functions:
 Everything else here is presentation (HTML/CSS) served by Gradio.
 """
 
-import html
+import html  # brings in a helper for making text safe to show inside web pages
 
-import gradio as gr
-from gradio.themes import Soft
+import gradio as gr  # brings in Gradio, the toolkit that builds the web screen
+from gradio.themes import Soft  # brings in a ready-made soft look for the screen
 
-import contacts
+import contacts  # brings in our own contacts.py file so we can call its functions
 
 # ---------------------------------------------------------------------------
 # Look & feel tokens
@@ -24,7 +24,7 @@ import contacts
 
 # Avatar tints: (background, text). Picked deterministically from the name so
 # the same contact always gets the same colour.
-AVATAR_PALETTE = [
+AVATAR_PALETTE = [  # a list of colour pairs (background, text) for the round name badges
     ("#F6DFDF", "#8E1D1D"),  # red
     ("#F2E7C8", "#7C4A10"),  # amber
     ("#D8EBDF", "#0F5F42"),  # green
@@ -528,18 +528,18 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 # ---------------------------------------------------------------------------
 
 
-def _avatar(name):
+def _avatar(name):  # defines a helper that picks initials and colours for a name
     """Deterministic initials + colours for a contact name."""
-    initials = "".join(w[0] for w in name.split()[:2]).upper() or "?"
-    bg, fg = AVATAR_PALETTE[sum(ord(c) for c in name) % len(AVATAR_PALETTE)]
-    return initials, bg, fg
+    initials = "".join(w[0] for w in name.split()[:2]).upper() or "?"  # takes the first letter of the first two words, in capitals
+    bg, fg = AVATAR_PALETTE[sum(ord(c) for c in name) % len(AVATAR_PALETTE)]  # picks a colour pair based on the name, so it is always the same
+    return initials, bg, fg  # hands back the initials and the two colours
 
 
-def _domain(email):
-    return email.split("@", 1)[1].strip().lower() if "@" in email else ""
+def _domain(email):  # defines a helper that pulls the company part out of an email
+    return email.split("@", 1)[1].strip().lower() if "@" in email else ""  # returns the bit after the @, or empty text if there is no @
 
 
-def render_topbar():
+def render_topbar():  # defines a function that builds the HTML for the top bar
     return """
     <div class="crm-topbar">
         <div class="crm-logo">C</div>
@@ -550,10 +550,10 @@ def render_topbar():
     </div>"""
 
 
-def render_stats():
-    data = contacts.load()
-    domains = {_domain(c.get("email", "")) for c in data.values()} - {""}
-    newest = html.escape(list(data)[-1]) if data else "—"
+def render_stats():  # defines a function that builds the three summary tiles
+    data = contacts.load()  # reads all the contacts from the backend
+    domains = {_domain(c.get("email", "")) for c in data.values()} - {""}  # collects the unique company domains, dropping blanks
+    newest = html.escape(list(data)[-1]) if data else "—"  # takes the most recently added name, or a dash if there are none
     return f"""
     <div class="crm-stats">
         <div class="crm-stat"><div class="lbl">Contacts</div><div class="num">{len(data)}</div></div>
@@ -562,12 +562,12 @@ def render_stats():
     </div>"""
 
 
-def render_card(name, contact):
-    initials, bg, fg = _avatar(name)
-    phone = html.escape(contact.get("phone", "").strip())
-    email = contact.get("email", "").strip()
-    domain = html.escape(_domain(email))
-    email_html = (
+def render_card(name, contact):  # defines a function that builds the HTML card for one contact
+    initials, bg, fg = _avatar(name)  # gets the initials and colours for this name
+    phone = html.escape(contact.get("phone", "").strip())  # gets the phone number, tidied and made safe to show
+    email = contact.get("email", "").strip()  # gets the email address with spaces trimmed off
+    domain = html.escape(_domain(email))  # gets the company part of the email, made safe to show
+    email_html = (  # builds the email link (or a "no email" note), all in one piece of HTML
         f'<a class="crm-email" href="mailto:{html.escape(email)}">{html.escape(email)}</a>'
         if email else '<span class="crm-none">no email</span>'
     )
@@ -583,23 +583,23 @@ def render_card(name, contact):
     </article>"""
 
 
-def render_grid(query=""):
+def render_grid(query=""):  # defines a function that builds the grid of contact cards
     """The directory: all contacts as cards, filtered by the search query."""
-    data = contacts.load()
-    q = query.strip().lower()
-    matches = {
+    data = contacts.load()  # reads all the contacts from the backend
+    q = query.strip().lower()  # tidies the search text: trims spaces and makes it lowercase
+    matches = {  # keeps only the contacts whose name, phone or email contains the search text
         name: c for name, c in sorted(data.items(), key=lambda kv: kv[0].lower())
         if q in f"{name} {c.get('phone', '')} {c.get('email', '')}".lower()
     }
 
-    if not data:
+    if not data:  # if there are no contacts saved at all
         return """
         <div class="crm-empty">
             <div class="big">📇</div>
             <h3>No contacts yet</h3>
             <p>Add your first contact with the form on the left.</p>
         </div>"""
-    if not matches:
+    if not matches:  # if there are contacts but none matched the search
         return f"""
         <div class="crm-empty">
             <div class="big">🔍</div>
@@ -607,17 +607,17 @@ def render_grid(query=""):
             <p>Try a different name, phone number, or company domain.</p>
         </div>"""
 
-    head = (
+    head = (  # builds the small heading that shows how many contacts are being shown
         f'<div class="crm-dir-head"><h2>Directory</h2>'
         f'<span>{len(matches)} of {len(data)} shown</span></div>'
     )
-    cards = "".join(render_card(n, c) for n, c in matches.items())
-    return f'{head}<div class="crm-grid">{cards}</div>'
+    cards = "".join(render_card(n, c) for n, c in matches.items())  # builds a card for each matching contact and joins them together
+    return f'{head}<div class="crm-grid">{cards}</div>'  # hands back the heading plus all the cards as one piece of HTML
 
 
-def render_pill(message, ok=True):
-    kind = "crm-pill-ok" if ok else "crm-pill-warn"
-    return f'<div class="crm-pill {kind}">{html.escape(message)}</div>'
+def render_pill(message, ok=True):  # defines a function that builds a small status message badge
+    kind = "crm-pill-ok" if ok else "crm-pill-warn"  # picks a green style for good news or an amber one for warnings
+    return f'<div class="crm-pill {kind}">{html.escape(message)}</div>'  # hands back the badge HTML with the message inside
 
 
 # ---------------------------------------------------------------------------
@@ -625,76 +625,76 @@ def render_pill(message, ok=True):
 # ---------------------------------------------------------------------------
 
 
-def _refresh(query):
+def _refresh(query):  # defines a helper that rebuilds everything after the data changes
     """Everything that changes when the data changes."""
-    names = sorted(contacts.load(), key=str.lower)
-    return render_grid(query), render_stats(), gr.Dropdown(choices=names, value=None)
+    names = sorted(contacts.load(), key=str.lower)  # gets all contact names sorted A to Z, ignoring capitals
+    return render_grid(query), render_stats(), gr.Dropdown(choices=names, value=None)  # hands back the fresh grid, tiles and remove-menu
 
 
-def on_save(name, phone, email, query):
-    name = name.strip()
-    if not name:
-        return render_pill("Name is required.", ok=False), *_refresh(query), name, phone, email
-    message = contacts.add(name, phone.strip(), email.strip())
-    return render_pill(message), *_refresh(query), "", "", ""
+def on_save(name, phone, email, query):  # defines what happens when the Save button is clicked
+    name = name.strip()  # trims spaces off the typed name
+    if not name:  # if the name box was left empty
+        return render_pill("Name is required.", ok=False), *_refresh(query), name, phone, email  # shows a warning and keeps what was typed
+    message = contacts.add(name, phone.strip(), email.strip())  # saves the contact through the backend
+    return render_pill(message), *_refresh(query), "", "", ""  # shows the result, refreshes, and clears the boxes
 
 
-def on_remove(selected, query):
-    if not selected:
-        return render_pill("Pick a contact to remove.", ok=False), *_refresh(query)
-    message = contacts.delete(selected)
-    return render_pill(message, ok="Deleted" in message), *_refresh(query)
+def on_remove(selected, query):  # defines what happens when the Remove button is clicked
+    if not selected:  # if no contact was picked from the menu
+        return render_pill("Pick a contact to remove.", ok=False), *_refresh(query)  # shows a warning and refreshes
+    message = contacts.delete(selected)  # deletes the chosen contact through the backend
+    return render_pill(message, ok="Deleted" in message), *_refresh(query)  # shows the result and refreshes
 
 
-def on_search(query):
-    return render_grid(query)
+def on_search(query):  # defines what happens as the user types in the search box
+    return render_grid(query)  # rebuilds just the grid, filtered by the search text
 
 
-def on_load(query):
-    return (*_refresh(query),)
+def on_load(query):  # defines what happens when the page first loads
+    return (*_refresh(query),)  # refreshes the grid, tiles and remove-menu once at the start
 
 
 # ---------------------------------------------------------------------------
 # Layout
 # ---------------------------------------------------------------------------
 
-with gr.Blocks(title="Contact Book — mini CRM") as demo:
-    gr.HTML(render_topbar)
+with gr.Blocks(title="Contact Book — mini CRM") as demo:  # starts building the whole web page and calls it demo
+    gr.HTML(render_topbar)  # puts the top bar at the top of the page
 
-    with gr.Row(equal_height=False):
+    with gr.Row(equal_height=False):  # arranges the next things side by side in a row
         # Left rail — the form
-        with gr.Column(scale=1, min_width=300, elem_classes="crm-panel"):
-            gr.HTML(
+        with gr.Column(scale=1, min_width=300, elem_classes="crm-panel"):  # makes the narrow left column for the form
+            gr.HTML(  # puts a small heading and note at the top of the form
                 '<h2 class="crm-panel-title">New contact</h2>'
                 '<p class="crm-panel-kicker">Saving an existing name updates that contact.</p>'
             )
-            name = gr.Textbox(label="Name", placeholder="Priya Raman")
-            phone = gr.Textbox(label="Phone", placeholder="98400 12345")
-            email = gr.Textbox(label="Email", placeholder="priya@example.com")
-            save_btn = gr.Button("Save contact", elem_id="crm-save")
-            status = gr.HTML()
+            name = gr.Textbox(label="Name", placeholder="Priya Raman")  # adds the Name text box
+            phone = gr.Textbox(label="Phone", placeholder="98400 12345")  # adds the Phone text box
+            email = gr.Textbox(label="Email", placeholder="priya@example.com")  # adds the Email text box
+            save_btn = gr.Button("Save contact", elem_id="crm-save")  # adds the Save button
+            status = gr.HTML()  # adds an empty spot where the status message will appear
 
-            gr.HTML('<hr class="crm-divider"><h2 class="crm-panel-title">Remove a contact</h2>')
-            picker = gr.Dropdown(choices=[], show_label=False, container=False)
-            remove_btn = gr.Button("Remove selected", elem_id="crm-remove")
+            gr.HTML('<hr class="crm-divider"><h2 class="crm-panel-title">Remove a contact</h2>')  # adds a divider and the "Remove a contact" heading
+            picker = gr.Dropdown(choices=[], show_label=False, container=False)  # adds the drop-down menu for choosing who to remove
+            remove_btn = gr.Button("Remove selected", elem_id="crm-remove")  # adds the Remove button
 
         # Main — the directory
-        with gr.Column(scale=3, elem_classes="crm-main"):
-            search = gr.Textbox(
+        with gr.Column(scale=3, elem_classes="crm-main"):  # makes the wider right column for the contact list
+            search = gr.Textbox(  # adds the search box across the top of the list
                 show_label=False, container=False, elem_id="crm-search",
                 placeholder="Search by name, phone, email, or company…",
             )
-            stats = gr.HTML(render_stats)
-            grid = gr.HTML(render_grid)
+            stats = gr.HTML(render_stats)  # adds the three summary tiles
+            grid = gr.HTML(render_grid)  # adds the grid of contact cards
 
     # Wiring: which function runs, what goes in, what comes out
-    save_btn.click(on_save, [name, phone, email, search], [status, grid, stats, picker, name, phone, email])
-    remove_btn.click(on_remove, [picker, search], [status, grid, stats, picker])
-    search.change(on_search, [search], [grid])
-    demo.load(on_load, [search], [grid, stats, picker])
+    save_btn.click(on_save, [name, phone, email, search], [status, grid, stats, picker, name, phone, email])  # runs on_save when Save is clicked
+    remove_btn.click(on_remove, [picker, search], [status, grid, stats, picker])  # runs on_remove when Remove is clicked
+    search.change(on_search, [search], [grid])  # runs on_search whenever the search text changes
+    demo.load(on_load, [search], [grid, stats, picker])  # runs on_load once when the page first opens
 
-if __name__ == "__main__":
-    demo.launch(theme=Soft(), css=CSS, head=HEAD, js=FORCE_LIGHT_JS)
+if __name__ == "__main__":  # only runs the next line when this file is started directly
+    demo.launch(theme=Soft(), css=CSS, head=HEAD, js=FORCE_LIGHT_JS)  # opens the web page in the browser
 
 
 # ==========================================================================

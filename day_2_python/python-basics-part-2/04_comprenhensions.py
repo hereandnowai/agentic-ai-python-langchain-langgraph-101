@@ -6,38 +6,38 @@
 # normal loop first, then as a comprehension. Run: python 04_comprenhensions.py
 # ==========================================================================
 
-numbers = [1, 2, 3, 4, 5, 6]
+numbers = [1, 2, 3, 4, 5, 6]  # a list of six numbers to work with
 
 # part 1 - the same transform, two ways
-evens_loop = []
-for number in numbers:
-    if number % 2 == 0:
-        evens_loop.append(number)
-print(f"evens using loop: {evens_loop}")
+evens_loop = []  # makes an empty list to collect the even numbers
+for number in numbers:  # goes through each number one by one
+    if number % 2 == 0:  # if the number divides evenly by 2 (no remainder)
+        evens_loop.append(number)  # adds that even number to the list
+print(f"evens using loop: {evens_loop}")  # shows the even numbers found the long way
 
-evens_comp = [n for n in numbers if n % 2 == 0]
-print(f"evens using comprehension: {evens_comp}")
+evens_comp = [n for n in numbers if n % 2 == 0]  # the same thing in one short line
+print(f"evens using comprehension: {evens_comp}")  # shows the even numbers found the short way
 
 # part 2 - transform no filter
-doubled = [n * 2 for n in numbers]
-print(f"doubled numbers: {doubled}")
+doubled = [n * 2 for n in numbers]  # makes a new list with every number doubled
+print(f"doubled numbers: {doubled}")  # shows the doubled numbers
 
-squares = [n ** 2 for n in numbers]
-print(f"squared numbers: {squares}")
+squares = [n ** 2 for n in numbers]  # makes a new list with every number multiplied by itself
+print(f"squared numbers: {squares}")  # shows the squared numbers
 
-upper = [word.upper() for word in ["hello", "world"]]
-print(f"uppercased words: {upper}")
+upper = [word.upper() for word in ["hello", "world"]]  # makes a new list with each word in capitals
+print(f"uppercased words: {upper}")  # shows the capitalised words
 
-lengths = [len(word) for word in ["hello", "world"]]
-print(f"lengths of words: {lengths}")
+lengths = [len(word) for word in ["hello", "world"]]  # makes a new list of how long each word is
+print(f"lengths of words: {lengths}")  # shows those lengths
 
 # part 3 - filter only
-words = ["hello", "world", "python", "is", "awesome"]
-long_words = [word for word in words if len(word) >= 5]
-print(f"long words: {long_words}")
+words = ["hello", "world", "python", "is", "awesome"]  # a list of words
+long_words = [word for word in words if len(word) >= 5]  # keeps only the words with 5 or more letters
+print(f"long words: {long_words}")  # shows the long words
 
 # part 4 - filter 'retrieved chunks' by score
-chunks = [
+chunks = [  # a list of pieces of text, each with a relevance score
     {"text": "Home loan interest start at 8.4%", "score": 0.91},
     {"text": "Branch opens at 9am", "score": 0.75},
     {"text": "Get your home loan today", "score": 0.85},
@@ -45,25 +45,25 @@ chunks = [
 ]
 
 # filter chunks with score >= 0.8
-relevant_chunks = [c["text"] for c in chunks if c["score"] >= 0.8]
-print(f"relevant chunks:")
-for t in relevant_chunks:
-    print(f"  {t}")
+relevant_chunks = [c["text"] for c in chunks if c["score"] >= 0.8]  # keeps the text of chunks scoring 0.8 or higher
+print(f"relevant chunks:")  # prints a heading
+for t in relevant_chunks:  # goes through each kept piece of text
+    print(f"  {t}")  # shows that piece of text
 
 
 # part 5 - dictionary comprehensions
-score_by_text = {c["text"]: c["score"] for c in chunks if c["score"] >= 0.8}
-print(f"score by text: {score_by_text}")
+score_by_text = {c["text"]: c["score"] for c in chunks if c["score"] >= 0.8}  # builds a dict of text to score for the high scorers
+print(f"score by text: {score_by_text}")  # shows that dictionary
 
-products = ["home", "car", "personal"]
-rates = [8.4, 9.2, 15.5]
-rate_of = {p: r for p, r in zip(products, rates)}
-print("rate of : ", rate_of)
-print("rate of car: ", rate_of["car"])
+products = ["home", "car", "personal"]  # a list of loan types
+rates = [8.4, 9.2, 15.5]  # the matching interest rates
+rate_of = {p: r for p, r in zip(products, rates)}  # pairs each product with its rate into a dictionary
+print("rate of : ", rate_of)  # shows the product-to-rate dictionary
+print("rate of car: ", rate_of["car"])  # looks up just the car rate
 
 # part 6 - set comprehensions
-first_letters = {word[0] for word in ["hello", "world", "python", "is", "awesome"]}
-print(f"first letters: {first_letters}")
+first_letters = {word[0] for word in ["hello", "world", "python", "is", "awesome"]}  # collects the first letter of each word, no repeats
+print(f"first letters: {first_letters}")  # shows the set of first letters
 
 
 # ==========================================================================

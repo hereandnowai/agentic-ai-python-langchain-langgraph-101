@@ -2,21 +2,21 @@
 # A calculator typically has the following functionalities:
 # Basic Arithmetic Operations: Addition, Subtraction, Multiplication, Division
 
-def add(a, b):
-    return a + b
+def add(a, b):  # makes a helper named add that takes two numbers
+    return a + b  # gives back the two numbers added together
 
-def subtract(a, b):
-    return a - b
+def subtract(a, b):  # makes a helper named subtract that takes two numbers
+    return a - b  # gives back the first number minus the second
 
-def multiply(a, b):
-    return a * b
+def multiply(a, b):  # makes a helper named multiply that takes two numbers
+    return a * b  # gives back the two numbers multiplied together
 
-def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero.")
-    return a / b
+def divide(a, b):  # makes a helper named divide that takes two numbers
+    if b == 0:  # check whether the second number is zero
+        raise ValueError("Cannot divide by zero.")  # stop with an error, because dividing by zero is not allowed
+    return a / b  # gives back the first number divided by the second
 
-def calculate(a, operation, b):
+def calculate(a, operation, b):  # makes the main helper that picks the right maths for the chosen operation
     """Run one operation on two numbers and return the result.
 
     'ops' is a dictionary that maps an operation NAME (a string like "add")
@@ -24,10 +24,10 @@ def calculate(a, operation, b):
     values, so we can store them in a dict and look one up by name — this
     is much cleaner than a long if/elif chain.
     """
-    ops = {"add": add, "subtract": subtract, "multiply": multiply, "divide": divide}
+    ops = {"add": add, "subtract": subtract, "multiply": multiply, "divide": divide}  # a lookup table linking each name to its matching helper
     func = ops.get(operation)          # look up the function by its name
     if func is None:                   # the name was not in our dictionary
-        raise ValueError(f"Invalid operation: {operation}")
+        raise ValueError(f"Invalid operation: {operation}")  # stop with an error because we do not know this operation
     return func(a, b)                  # call the chosen function on the numbers
 
 

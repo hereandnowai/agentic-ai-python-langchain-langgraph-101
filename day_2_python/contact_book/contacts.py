@@ -8,64 +8,64 @@
 # The screen (app.py) only CALLS these functions. This is the file to study.
 # ==========================================================================
 
-import json
-import os
+import json  # brings in Python's toolkit for reading and writing JSON
+import os  # brings in tools for working with file paths and folders
 
 # __file__ is the path to THIS file. We build the path to contacts.json in the
 # SAME folder, so the app works no matter where you run it from.
-FILE = os.path.join(os.path.dirname(__file__), "contacts.json")
+FILE = os.path.join(os.path.dirname(__file__), "contacts.json")  # builds the full path to the data file next to this one
 
-def load():
+def load():  # defines a function that reads all the saved contacts
     """Read all contacts from the JSON file and return them as a dict.
 
     If the file does not exist yet (first run), return an empty dict {}.
     """
-    if os.path.exists(FILE):
-        with open(FILE) as f:
+    if os.path.exists(FILE):  # if the data file already exists on disk
+        with open(FILE) as f:  # opens the file for reading
             return json.load(f)   # JSON text on disk -> Python dict
-    return {}
+    return {}  # if there is no file yet, hand back an empty dictionary
 
-def save(contacts):
+def save(contacts):  # defines a function that writes all contacts to disk
     """Write the whole contacts dict back to the JSON file.
 
     indent=2 makes the saved file human-readable (nicely spaced).
     """
-    with open(FILE, "w") as f:
+    with open(FILE, "w") as f:  # opens the file for writing (making a new empty one)
         json.dump(contacts, f, indent=2)   # Python dict -> JSON text on disk
 
-def add(name, phone, email):
+def add(name, phone, email):  # defines a function that adds or updates one contact
     """Add a new contact (or update one that already has this name).
 
     Pattern used everywhere here: load -> change the dict -> save.
     """
-    contacts = load()
+    contacts = load()  # reads the current contacts from disk
     contacts[name] = {"phone": phone, "email": email}   # add/replace this key
-    save(contacts)
-    return f"Saved {name}."
+    save(contacts)  # writes the updated contacts back to disk
+    return f"Saved {name}."  # hands back a short confirmation message
 
-def search(name):
+def search(name):  # defines a function that looks up one contact by name
     """Look up one contact by name and return a readable line of text."""
     contact = load().get(name)          # .get() returns None if not found
-    if contact is None:
-        return f"No contact called {name}"
-    return f"{name}: {contact['phone']}, {contact['email']}"
+    if contact is None:  # if no contact with that name was found
+        return f"No contact called {name}"  # hands back a "not found" message
+    return f"{name}: {contact['phone']}, {contact['email']}"  # hands back the name with its phone and email
 
-def delete(name):
+def delete(name):  # defines a function that removes one contact by name
     """Remove a contact by name, if it exists."""
-    contacts = load()
+    contacts = load()  # reads the current contacts from disk
     if name not in contacts:            # guard: don't crash on a missing name
-        return f"No contact called {name}."
+        return f"No contact called {name}."  # hands back a "not found" message
     del contacts[name]                  # remove the key from the dict
-    save(contacts)
-    return f"Deleted {name}."
+    save(contacts)  # writes the shortened contacts back to disk
+    return f"Deleted {name}."  # hands back a short confirmation message
 
-def list_all():
+def list_all():  # defines a function that returns every contact as text
     """Return every contact as one multi-line string (one contact per line)."""
-    contacts = load()
-    if not contacts:
-        return "No contacts yet."
+    contacts = load()  # reads the current contacts from disk
+    if not contacts:  # if there are no contacts at all
+        return "No contacts yet."  # hands back a friendly empty message
     # loop over every name/details pair and build one line each, joined by \n
-    return "\n".join(f"{n}: {c['phone']} | {c['email']}" for n, c in contacts.items())
+    return "\n".join(f"{n}: {c['phone']} | {c['email']}" for n, c in contacts.items())  # builds one line per contact and joins them into a block of text
 
 
 # ==========================================================================

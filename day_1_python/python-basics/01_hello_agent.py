@@ -9,7 +9,7 @@
 # Run it with:  python 01_hello_agent.py
 # ==========================================================================
 
-print("Hello Agent!")
+print("Hello Agent!")  # shows the words Hello Agent! on the screen
 
 # concept 1: what is a variable in python?
 
@@ -17,21 +17,21 @@ agent_name = "Caramel AI" # str
 version = 1 # int
 is_ready = True # bool
 
-print(agent_name)
-print(version)
+print(agent_name)  # shows the value stored in agent_name (Caramel AI)
+print(version)  # shows the value stored in version (1)
 
 # concept 2: what is f-string in python?
-print("I am Caramel AI, running bootcamp version 1")
+print("I am Caramel AI, running bootcamp version 1")  # shows this exact sentence as plain text
 print("I am " + agent_name + ", running bootcamp version " + str(version)) # hard way
-print("I am {agent_name}, running bootcamp version {version}")
-print(f"I am {agent_name}, running bootcamp version {version}")
+print("I am {agent_name}, running bootcamp version {version}")  # shows the curly braces as-is because there is no f in front
+print(f"I am {agent_name}, running bootcamp version {version}")  # the f lets the braces get filled in with the real values
 
 # concept 3: changing a variable
-mood = "curious"
-print(f"{agent_name} feels {mood}")
+mood = "curious"  # puts the word curious into a box named mood
+print(f"{agent_name} feels {mood}")  # shows a sentence with the name and mood filled in
 
-mood = "confident"
-print(f"{agent_name} now feels {mood}.")
+mood = "confident"  # replaces the old mood with the word confident
+print(f"{agent_name} now feels {mood}.")  # shows the sentence again with the new mood
 
 # PEP 8 Python Enhancement Proposal 8
 # 1. Use snake_case for variable names

@@ -8,7 +8,7 @@
 
 # part 1 - a fully hinted, fully documented function
 
-def total_price(unit_price: float, quantity: int) -> float:
+def total_price(unit_price: float, quantity: int) -> float:  # defines a function; the notes say it takes a decimal and a whole number and gives back a decimal
     """
     Calculate the total price of items based on unit price and quantity.
 
@@ -19,9 +19,9 @@ def total_price(unit_price: float, quantity: int) -> float:
     Returns:
         float: The total price for the given quantity of items.
     """
-    return unit_price * quantity
+    return unit_price * quantity  # hands back the price of one item times how many there are
 
-print("total_price(19.99, 3): ", total_price(19.99, 3))
+print("total_price(19.99, 3): ", total_price(19.99, 3))  # shows the total for 3 items at 19.99 each
 
 # part 2 - the common hints you will use constantly
 # str               a piece of text
@@ -34,14 +34,14 @@ print("total_price(19.99, 3): ", total_price(19.99, 3))
 # dict[str, int]    a dictionary with string keys and integer values
 # str | None        a string or None (optional string)
 
-def tags_for(product: str) -> list[str]:
+def tags_for(product: str) -> list[str]:  # defines a function that takes text and gives back a list of text
     """
     Generate a list of tags for a given product.
     Args: product (str): The name of the product.
     """
-    return product.lower().split()
+    return product.lower().split()  # makes the text lowercase and splits it into a list of words
 
-def build_customer(name: str, age: int, verified: bool = False) -> dict:
+def build_customer(name: str, age: int, verified: bool = False) -> dict:  # defines a function that gives back a dictionary; verified defaults to False
     """
     Build a customer dictionary with name, age, and verification status.
 
@@ -53,10 +53,10 @@ def build_customer(name: str, age: int, verified: bool = False) -> dict:
     Returns:
         dict: A dictionary containing the customer's information.
     """
-    return {"name": name, "age": age, "verified": verified}
+    return {"name": name, "age": age, "verified": verified}  # bundles the three inputs into one dictionary and returns it
 
-print("tags_for('Home Loan') : ", tags_for("Home Loan"))
-print("build_customer : ", build_customer("Alice", 30, verified=True))
+print("tags_for('Home Loan') : ", tags_for("Home Loan"))  # shows the tags made from "Home Loan"
+print("build_customer : ", build_customer("Alice", 30, verified=True))  # shows the customer dictionary that gets built
 
 
 # ==========================================================================

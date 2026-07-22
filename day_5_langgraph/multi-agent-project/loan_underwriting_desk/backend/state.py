@@ -5,7 +5,7 @@ Every node reads it and returns a small update that merges back in.
 from typing import TypedDict, NotRequired   # tools for describing the shape of our data
 
 
-class LoanState(TypedDict):
+class LoanState(TypedDict):        # a labelled form describing every piece of data we carry around
     # --- the application (filled in by the form, always present) ---
     name: str                          # the applicant's name
     income: float                      # monthly income

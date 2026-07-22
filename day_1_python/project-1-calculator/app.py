@@ -11,19 +11,19 @@
 # Run it with:  python app.py   (needs: pip install gradio)
 # ==========================================================================
 
-import gradio as gr
+import gradio as gr  # brings in the Gradio tool that builds the web screen for us
 from calculator import calculate  # our own backend function from calculator.py
 
-def run(a, operation, b):
+def run(a, operation, b):  # makes a helper named run that takes the two numbers and the chosen operation
     """Called when the user clicks Calculate; returns the result as text.
 
     Gradio passes in the three input values (a, the chosen operation, and b).
     We hand them to calculate() and turn the number into a string so the
     Textbox can display it.
     """
-    return str(calculate(a, operation, b))
+    return str(calculate(a, operation, b))  # does the maths, then turns the answer into text to show on screen
 
-demo = gr.Interface(
+demo = gr.Interface(  # builds the whole web page: connects the run helper to the input boxes and result box
     fn=run,
     inputs=[
         gr.Number(label="First number"),
@@ -37,8 +37,8 @@ demo = gr.Interface(
 
 # This line means: "only launch the web app when this file is run directly
 # (python app.py), not when it is imported by another file."
-if __name__ == "__main__":
-    demo.launch()
+if __name__ == "__main__":  # only run the next part when this file is started directly, not when imported
+    demo.launch()  # opens the calculator web page in the browser
 
 
 # ==========================================================================

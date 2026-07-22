@@ -14,22 +14,22 @@
 # By using a shared state, nodes can collaborate and coordinate their actions, enabling more
 # complex and dynamic behaviors in the system.
 
-from typing import TypedDict, NotRequired
-from langgraph.graph import StateGraph, START, END
+from typing import TypedDict, NotRequired  # borrows tools for describing the shape of our shared box of info
+from langgraph.graph import StateGraph, START, END  # borrows the pieces we need to build and mark the start and finish of our flow
 
-class LoadState(TypedDict):
-    applicant: str
-    income: float
-    emi: float
-    ratio: NotRequired[float]
+class LoadState(TypedDict):  # describes what our shared box of info looks like and what it holds
+    applicant: str  # the name of the person, written as text
+    income: float  # how much money the person earns, as a number with decimals
+    emi: float  # the monthly loan payment amount, as a number with decimals
+    ratio: NotRequired[float]  # the payment-to-income ratio, which may or may not be filled in yet
 
-def compute_ratio(state):
-    return {"ratio": round(state["emi"] / state["income"], 2)}
+def compute_ratio(state):  # a step that works out the payment-to-income ratio from the current info
+    return {"ratio": round(state["emi"] / state["income"], 2)}  # divides payment by income, rounds to 2 decimals, and hands it back
 
-b = StateGraph(LoadState)
-b.add_node("compute_ratio", compute_ratio)
-b.add_edge(START, "compute_ratio")
-b.add_edge("compute_ratio", END)
-graph = b.compile()
+b = StateGraph(LoadState)  # starts a new empty flow that uses our shared box shape
+b.add_node("compute_ratio", compute_ratio)  # adds our ratio step to the flow and names it
+b.add_edge(START, "compute_ratio")  # connects the very beginning to the ratio step
+b.add_edge("compute_ratio", END)  # connects the ratio step to the finish
+graph = b.compile()  # finalizes the flow so it is ready to be run
 
-print(graph.invoke({"applicant": "John", "income": 50000, "emi": 1500}))
+print(graph.invoke({"applicant": "John", "income": 50000, "emi": 1500}))  # runs the flow with John's details and shows the result on screen
